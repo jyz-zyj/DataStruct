@@ -1,0 +1,53 @@
+# =============== Visual Studio 核心规则 ===============
+bin/
+x64/
+ipch/
+*.user
+*.suo
+*.cache
+*.opendb
+*.vcxproj.user
+*.sdf
+*.opensdf
+
+# =============== 编译生成文件 ===============
+# 对象文件
+*.o
+*.obj
+*.iobj
+*.tlog
+
+# 可执行文件
+*.exe
+*.ilk
+*.pdb
+*.ipdb
+*.idb
+
+# 日志和临时文件
+*.log
+*.recipe
+*.cache
+
+# =============== 跨平台通用规则 ===============
+# 依赖文件
+*.d
+
+# 库文件
+*.a
+*.so
+*.dylib
+*.dll
+*.lib
+*.exp
+
+# 预编译头
+*.gch
+*.pch
+
+# macOS特定
+*.app
+*.dSYM
+
+# Visual Studio 工作区目录
+.vs/
