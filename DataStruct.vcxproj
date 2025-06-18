@@ -147,8 +147,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\default.h" />
+<<<<<<< HEAD
     <ClInclude Include="src\graph.h" />
     <ClInclude Include="src\graphMatrix.h" />
+=======
+>>>>>>> 3b515b7883902ee1cb3c9181070018c1541cc028
     <ClInclude Include="src\stack.h" />
     <ClInclude Include="src\vector.h" />
   </ItemGroup>
