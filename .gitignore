@@ -47,7 +47,11 @@ ipch/
 
 # macOS特定
 *.app
+<<<<<<< HEAD
 *.dSYM
 
 # Visual Studio 工作区目录
 .vs/
+=======
+*.dSYM
+>>>>>>> 3b515b7883902ee1cb3c9181070018c1541cc028
