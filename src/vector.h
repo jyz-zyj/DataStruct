@@ -60,7 +60,6 @@ public:
 		_size++;
 		return e;
 	}
-<<<<<<< HEAD
 	T remove(Rank i) {
 		T back = _elem[i];
 		for (i; i < _size - 1; i++) {
@@ -68,12 +67,6 @@ public:
 		}
 		_size--;
 		return back;
-=======
-	T remove() {
-		_size--;
-		T result = _elem[_size];
-		return	result ;
->>>>>>> 3b515b7883902ee1cb3c9181070018c1541cc028
 	}
 	T& operator[](Rank r) {
 		if (r < 0 || r >= _size) {
