@@ -155,4 +155,34 @@ public:
 	int& parent(Rank v) {
 		return V[v].parent;
 	}
+	void dfs(Rank v) {
+		reset();
+		int clock = 0;
+		do {
+			if (status(v) == Undiscovered)
+				DFS(v, clock);
+		} while (s != (v = (++v % n)));
+	}
+	void DFS(Rank v, int& clock) {
+		dTime(v) = ++clock;
+		status(v) = Discovered;
+		for (Rank u = firstNbr(v); u > -1; u = nextNbr(v, u)) {
+			if (status(u) == Undiscovered) {
+				type(v, u) = Tree;
+				parent(u) = v;
+				DFS(u, clock);
+			}
+			else if (status(u) == Discovered) {
+				type(v, u) = Backward;
+			}
+			else if (dTime(v) < dTime(u)) {
+				type(v, u) = Forward;
+			}
+			else {
+				type(v, u) = Cross;
+			}
+		}
+		status(v) = Visited;
+		fTime(v) = ++clock;
+	}
 };
