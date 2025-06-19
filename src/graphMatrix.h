@@ -1,11 +1,14 @@
 #pragma once
 #include "graph.h"
 #include "vector.h"
+#include "queue.h"
 template<typename Tv> class Vertex {
 public:
 	Tv data;
 	int inDegree;
 	int outDegree;
+	int dTime;
+	int fTime;
 	VStatus status;
 	int parent;
 	int priority;
@@ -17,8 +20,8 @@ template<typename Te> class Edge {
 public:
 	Te data;
 	int weight;
-	Etype type;
-	Edge(Te const& d = Te(), int w = 0, Etype t = Undetermined) : data(d), weight(w), type(t) {}
+	EType type;
+	Edge(Te const& d = Te(), int w = 0, EType t = Undetermined) : data(d), weight(w), type(t) {}
 };
 
 template<typename Tv, typename Te> class GraphMatrix : public Graph<Tv, Te> {
@@ -41,7 +44,7 @@ public:
 			return true;
 		return false;
 	}
-	Etype& type(int i, int j) {
+	EType& type(int i, int j) {
 		return E[i][j]->type;
 	}
 	Te& edge(int i, int j) {
@@ -98,5 +101,58 @@ public:
 			}
 		}
 		return back;
+	}
+	VStatus& status(Rank i) {
+		return V[i].status;
+	}
+	void bfs(Rank s) {
+		reset();
+		int clock = 0;
+		Rank v = s;
+		do
+		{
+			if (status(v) == Undiscovered)
+				BFS(v, clock);
+		} while (s!= ( v = ( ++v % n)));
+	}
+	void BFS(Rank v, int& clock) {
+		Queue<int> q;
+		status(v) = Discovered;
+		q.enqueue(v);
+		while (!q.empty()) {
+			int v = q.dequeue();
+			dTime(v) = ++clock;
+			for (u = firstNbr(v); u > -1; u = nextNbr(v, u)) {
+				if (status(u) == Undiscovered) {
+					status(u) = Discovered;
+					q.enqueue(u);
+					type(v, u) = Tree;
+					parent(u) = v;
+				}
+				else {
+					type(v, u) = Cross;
+				}
+			}
+			status(v) = Visited;
+		}
+	}
+	Rank nextNbr(Rank v, Rank u) {
+		while (-1 != --u && !exists(v, u));
+		return u;
+	}
+	Rank firstNbr(Rank v) {
+		return nextNbr(v, n);
+	}
+	int& dTime(int v) {
+		return V[v].dTime;
+	}
+	int& fTime(int v) {
+		return V[v].fTime;
+	}
+	EType& type(Rank v, Rank u) {
+		return E[v][u]->type;
+	}
+	int& parent(Rank v) {
+		return V[v].parent;
 	}
 };

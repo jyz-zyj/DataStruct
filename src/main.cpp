@@ -1,21 +1,18 @@
 #include"vector.h"
+#include"queue.h"
 int main() {
 	int a[10] = { 1,3,5,7,9,2,4,6,8,10 };
-<<<<<<< HEAD
 	Vector<int> v;
 	v.copyform(a, 0, 10);
 	v.remove(0);
 	v.print();
-=======
-	Vector<Vector<int>> v;
-	for (int i = 1; i < 5; i++) {
-		Vector<int> temp;
-		temp.copyform(a, 0, 10);
-		v.insert(temp);
+	Queue<int> T;
+	for (int i = 0; i < 10; i++) {
+		T.enqueue(i);
 	}
-	for (int i = 0; i < v.size(); i++) {
-		v[i].print();
+	std::cout << "Queue elements: ";
+	while (!T.empty()) {
+		std::cout << T.dequeue() << " ";
 	}
->>>>>>> 3b515b7883902ee1cb3c9181070018c1541cc028
 	return 0;
 }

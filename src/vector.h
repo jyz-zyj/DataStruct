@@ -19,7 +19,6 @@ public:
 			_elem[i] = other_vector._elem[i];
 		}
 	}
-<<<<<<< HEAD
 	Vector(Rank n, Rank m,T const& e) {
 		_size = n;
 		_capacity = m;
@@ -28,8 +27,6 @@ public:
 			_elem[i] = e;
 		}
 	}
-=======
->>>>>>> 3b515b7883902ee1cb3c9181070018c1541cc028
 	void copyform(T* const A, Rank lo, Rank hi) {
 		_size = hi - lo;
 		_elem = new T[_capacity = _size];
